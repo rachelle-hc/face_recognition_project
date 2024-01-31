@@ -3,6 +3,7 @@ import numpy as np
 import face_recognition
 import os
 
+
 face=cv2.CascadeClassifier("C:\\Users\\dell\\Desktop\\cv-ip\\cascades\\haarcascade_frontalface_default.xml")
 
 def detector(img):
@@ -18,10 +19,9 @@ def detector(img):
 def load_known_faces():
     known_face_encodings = []
     known_names = []
+    for image in os.listdir('Faces3'):
 
-    for image in os.listdir('Faces2'):
-
-        face_image = face_recognition.load_image_file(f"Faces2/{image}")
+        face_image = face_recognition.load_image_file(f"Faces3/{image}")
         face_encoding = face_recognition.face_encodings(face_image)
 
         if face_encoding:
@@ -30,7 +30,7 @@ def load_known_faces():
             known_names.append(image)
         else:
             print(f"no face detected in {image} so deleting")
-            os.remove(f"Faces2/{image}")
+            os.remove(f"Faces3/{image}")
 
 
     return known_face_encodings,known_names
