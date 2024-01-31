@@ -1,5 +1,4 @@
-my first project
-<br>
+=<br>
 using several youtube resources and chatgpt help
 <br>
 language: python
