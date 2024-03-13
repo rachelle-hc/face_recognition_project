@@ -3,6 +3,9 @@ import cv2
 import numpy as np
 import os
 from face1_data import load_known_faces
+#from face2_data import load_known_faces
+#from face3_data import load_known_faces
+
 
 
 # Load known faces and their encodings
@@ -19,11 +22,12 @@ def recognize_faces(video_capture, known_face_encodings, known_names):
             face_encoding = np.array(face_recognition.face_encodings(frame, [face_location]))
             matches = face_recognition.compare_faces(known_face_encodings, np.array(face_encoding), tolerance=0.6)
             name = "unknown"
+            #euclidean distance - compare fn
+            #compare fn distance measure, so lower is more same
 
             first_match_index = -1
             first_match_distance = float('inf')
 
-            # Find the first match within tolerance
             for idx, match in enumerate(matches):
                 if match:
                     first_match_index = idx
